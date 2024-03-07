@@ -14,8 +14,11 @@ project(pybind11_cuda LANGUAGES CXX CUDA)
 # c++ flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
-# cuda_add_library
-find_package(CUDA REQUIRED)
+# 寻找CUDA工具包支持uda_add_library
+find_package(CUDAToolkit REQUIRED)
+
+# 支持cuda架构sm_75;sm_80
+set(CMAKE_CUDA_ARCHITECTURES 75;80)
 
 # 指定安装路径
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/out CACHE INTERNAL "install directories")
