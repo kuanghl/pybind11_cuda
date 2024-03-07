@@ -13,25 +13,28 @@ install(TARGETS gpu_library LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 
 #===========================================================================
 
-##pybind11 sets -fvisibility=hidden in INTERFACE_COMPILE_OPTIONS on it's module target
-get_target_property(modifacecopts module INTERFACE_COMPILE_OPTIONS)
-list(REMOVE_ITEM modifacecopts "-fvisibility=hidden")
-set_target_properties(module PROPERTIES INTERFACE_COMPILE_OPTIONS "${modifacecopts}")
-
 # cuda lib build
-add_library(adder MODULE    ${CMAKE_CURRENT_SOURCE_DIR}/adder.cpp
-                            ${CMAKE_CURRENT_SOURCE_DIR}/adder.cu)
+add_library(addercu STATIC ${CMAKE_CURRENT_SOURCE_DIR}/adder.cu)
 
-# set cuda and c++ properties
-set_target_properties(adder PROPERTIES 
+# set cuda properties
+set_target_properties(addercu PROPERTIES 
     POSITION_INDEPENDENT_CODE ON
     CUDA_VISIBILITY_PRESET "hidden"
+    # CUDA_SEPARABLE_COMPILATION ON
+)
+
+# c++ lib build
+add_library(adder MODULE    ${CMAKE_CURRENT_SOURCE_DIR}/adder.cpp)
+
+# set c++ properties
+set_target_properties(adder PROPERTIES 
     CXX_VISIBILITY_PRESET "hidden"
     INTERPROCEDURAL_OPTIMIZATION TRUE
     PREFIX "${PYTHON_MODULE_PREFIX}"
     SUFFIX "${PYTHON_MODULE_EXTENSION}"
 )
 
+target_link_libraries(adder PRIVATE addercu)
 target_link_libraries(adder PRIVATE pybind11::module)
 
 # specify install directories
