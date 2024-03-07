@@ -15,8 +15,8 @@ project(pybind11_cuda LANGUAGES CXX CUDA)
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/out CACHE INTERNAL "install directories")
 
 
-# # 设置pybind11 c++标准
-# set(PYBIND11_CPP_STANDARD -std=c++11)
+# 设置pybind11 c++标准
+set(PYBIND11_CPP_STANDARD -std=c++11)
 
 # 编译构建子目录
 add_subdirectory(3rd)
