@@ -24,10 +24,13 @@ jobs:
       uses: actions/checkout@v4
     - name: setup environment
       run: |
-        sudo apt-get install gcc g++ make cmake 
+        sudo apt-get install gcc g++ make cmake python3.8 python3-pip
+        pip install numpy
         sudo bash ./configure
         nvcc --version
     - name: build code
       run: |
         mkdir build && cd build
         cmake .. && make -j16
+        sudo make install
+        cd ../ && python3 test_add.py

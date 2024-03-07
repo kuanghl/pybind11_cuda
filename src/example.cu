@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <cuda_runtime.h>
 
 __global__ void addKernel(int *c, const int *a, const int *b, int size) {
@@ -23,4 +24,6 @@ void add(int *c, const int *a, const int *b, int size) {
     cudaFree(dev_a);
     cudaFree(dev_b);
     cudaFree(dev_c);
+
+    printf("cuda End: c %d a %d b %d size %d\n", *c, *a, *b, size);
 }
