@@ -27,7 +27,13 @@ include_directories(${CUDA_INCLUDE_DIR})
 # target_link_libraries(main cudaMatMul)
 
 # cuda lib build
-cuda_add_library(examplecu ${CMAKE_CURRENT_SOURCE_DIR}/example.cu)
+add_library(examplecu SHARED ${CMAKE_CURRENT_SOURCE_DIR}/example.cu)
+
+# set cuda properties
+set_target_properties(examplecu PROPERTIES
+    CUDA_SEPARABLE_COMPILATION ON
+    CUDA_RESOLVE_DEVICE_SYMBOLS ON
+)
 
 # c++ pybind11 lib build
 pybind11_add_module(example ${CMAKE_CURRENT_SOURCE_DIR}/example.cpp)

@@ -14,7 +14,7 @@ project(pybind11_cuda LANGUAGES CXX CUDA)
 # c++ flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
 
-# 寻找CUDA工具包支持uda_add_library
+# 寻找CUDA工具包
 find_package(CUDAToolkit REQUIRED)
 
 # 支持cuda架构sm_75;sm_80
