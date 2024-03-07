@@ -27,7 +27,7 @@ include_directories(${CUDA_INCLUDE_DIR})
 # target_link_libraries(main cudaMatMul)
 
 # cuda lib build
-add_library(examplecu SHARED ${CMAKE_CURRENT_SOURCE_DIR}/example.cu)
+add_library(examplecu STATIC ${CMAKE_CURRENT_SOURCE_DIR}/example.cu)
 
 # set cuda properties
 set_target_properties(examplecu PROPERTIES
@@ -39,11 +39,11 @@ set_target_properties(examplecu PROPERTIES
 pybind11_add_module(example ${CMAKE_CURRENT_SOURCE_DIR}/example.cpp)
 
 # link
+link_directories(${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(example PRIVATE examplecu)
 target_link_libraries(example PRIVATE pybind11::module pybind11::embed)
 set_target_properties(example PROPERTIES    PREFIX "${PYTHON_MODULE_PREFIX}"
                                             SUFFIX "${PYTHON_MODULE_EXTENSION}")
 
 # specify install directories
-install(TARGETS examplecu LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 install(TARGETS example LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
