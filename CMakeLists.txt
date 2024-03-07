@@ -11,6 +11,9 @@ endif()
 # PROJECT_NAME
 project(pybind11_cuda LANGUAGES CXX CUDA)
 
+# cuda_add_library
+find_package(CUDA REQUIRED)
+
 # 指定安装路径
 set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/out CACHE INTERNAL "install directories")
 

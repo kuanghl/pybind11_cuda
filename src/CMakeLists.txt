@@ -13,6 +13,15 @@ include_directories(${CUDA_INCLUDE_DIR})
 # install(TARGETS gpu_library LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 
 #===========================================================================
+
+# cuda lib build
 cuda_add_library(examplecu ${CMAKE_CURRENT_SOURCE_DIR}/example.cu)
+
+# c++ pybind11 lib build
 pybind11_add_module(example ${CMAKE_CURRENT_SOURCE_DIR}/example.cpp)
+
+# link
 target_link_libraries(example PRIVATE examplecu)
+
+# specify install directories
+install(TARGETS example LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
