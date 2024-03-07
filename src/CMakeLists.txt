@@ -5,11 +5,11 @@ cmake_minimum_required(VERSION 2.8...3.5)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../inc)
 include_directories(${pybind11_INCLUDE_DIR})
 
-# pybind11 lib build
-pybind11_add_module(gpu_library ${CMAKE_CURRENT_SOURCE_DIR}/gpu_library.cu) 
+# # pybind11 lib build
+# pybind11_add_module(gpu_library ${CMAKE_CURRENT_SOURCE_DIR}/gpu_library.cu) 
 
-# specify install directories
-install(TARGETS gpu_library LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+# # specify install directories
+# install(TARGETS gpu_library LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 
 #===========================================================================
 
