@@ -25,9 +25,6 @@ void add_wrapper(py::array_t<int> a, py::array_t<int> b) {
     }
 
     delete[] c;
-
-    // Return the numpy array
-    return result;
 }
 
 PYBIND11_MODULE(example, m) {
