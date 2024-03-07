@@ -1,0 +1,33 @@
+name: Build for cross-platfrom
+on: 
+  # Allows interrupt concurrent action, create new a action
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - .gitignore
+      - README.md
+      - LICENSE
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  ubuntu_job:
+    name: ubuntu job
+    runs-on: ubuntu-latest
+    # strategy:
+    #   matrix:
+    #     architecture: [x86_64, aarch64, arm64, x64]
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+    - name: setup environment
+      run: |
+        sudo apt-get install gcc g++ make cmake 
+        sudo bash ./configure
+        nvcc --version
+    - name: build code
+      run: |
+        mkdir build && cd build
+        cmake .. && make -j16
