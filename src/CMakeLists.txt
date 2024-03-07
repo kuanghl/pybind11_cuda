@@ -45,4 +45,5 @@ set_target_properties(example PROPERTIES    PREFIX "${PYTHON_MODULE_PREFIX}"
                                             SUFFIX "${PYTHON_MODULE_EXTENSION}")
 
 # specify install directories
+install(TARGETS examplecu LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 install(TARGETS example LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
