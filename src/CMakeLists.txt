@@ -39,7 +39,7 @@ set_target_properties(examplecu PROPERTIES
 pybind11_add_module(example ${CMAKE_CURRENT_SOURCE_DIR}/example.cpp)
 
 # link
-link_directories(${CMAKE_CURRENT_BINARY_DIR})
+link_directories(${CMAKE_CURRENT_BINARY_DIR})   # 暴露库路径
 target_link_libraries(example PRIVATE examplecu)
 target_link_libraries(example PRIVATE pybind11::module pybind11::embed)
 set_target_properties(example PROPERTIES    PREFIX "${PYTHON_MODULE_PREFIX}"
