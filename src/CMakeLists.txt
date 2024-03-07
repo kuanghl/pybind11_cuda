@@ -27,7 +27,7 @@ include_directories(${CUDA_INCLUDE_DIR})
 # target_link_libraries(main cudaMatMul)
 
 # cuda lib build
-add_library(examplecu SHARED ${CMAKE_CURRENT_SOURCE_DIR}/example.cu)
+add_library(examplecu STATIC ${CMAKE_CURRENT_SOURCE_DIR}/example.cu)
 
 # set cuda properties
 set_target_properties(examplecu PROPERTIES
