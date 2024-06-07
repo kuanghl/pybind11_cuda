@@ -1,5 +1,8 @@
 import sys
-sys.path.append("./out/lib")
+import os
+
+pwd = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, pwd+'/build/src')
 
 import numpy as np
 import example
@@ -13,7 +16,15 @@ def main():
     result = example.add(a, b)
 
     # 打印计算结果
-    print("Result:", result)
+    print(f"Cuda Result: {a} + {b} = {result}")
+    
+    # 调用C++扩展模块中的add_cpp函数
+    a = 11
+    b = 17
+    result = example.add_cpp(11, 17)
+    
+    # 打印计算结果
+    print(f"Cpp Result: {a} + {b} = {result}")
 
 if __name__ == "__main__":
     main()

@@ -27,10 +27,13 @@ include_directories(${CUDA_INCLUDE_DIR})
 # target_link_libraries(main cudaMatMul)
 
 # cuda lib build
-add_library(examplecu STATIC ${CMAKE_CURRENT_SOURCE_DIR}/example.cu)
+add_library(call_cuda STATIC ${CMAKE_CURRENT_SOURCE_DIR}/call_cuda.cu)
+
+# c++ lib build
+add_library(call_cpp STATIC ${CMAKE_CURRENT_SOURCE_DIR}/call_cpp.cpp)
 
 # set cuda properties
-set_target_properties(examplecu PROPERTIES
+set_target_properties(call_cuda PROPERTIES
     CUDA_SEPARABLE_COMPILATION ON
     CUDA_RESOLVE_DEVICE_SYMBOLS ON
 )
@@ -40,11 +43,18 @@ pybind11_add_module(example ${CMAKE_CURRENT_SOURCE_DIR}/example.cpp)
 
 # link
 link_directories(${CMAKE_CURRENT_BINARY_DIR})   # 暴露库路径
-target_link_libraries(example PRIVATE examplecu)
-target_link_libraries(example PRIVATE pybind11::module pybind11::embed)
+target_link_libraries(example PRIVATE pybind11::module pybind11::embed call_cuda call_cpp)
 set_target_properties(example PROPERTIES    PREFIX "${PYTHON_MODULE_PREFIX}"
                                             SUFFIX "${PYTHON_MODULE_EXTENSION}")
 
+# c++ call python
+add_executable(call_python ${CMAKE_CURRENT_SOURCE_DIR}/call_python.cpp) 
+target_link_libraries(call_python PRIVATE pybind11::embed)                                     
+
 # specify install directories
-install(TARGETS examplecu LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+install(FILES ${PROJECT_SOURCE_DIR}/inc/example.h DESTINATION ${CMAKE_INSTALL_PREFIX}/inc)
+install(TARGETS call_cuda LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+install(TARGETS call_cpp LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 install(TARGETS example LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+install(TARGETS call_python DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
+install(FILES ${PROJECT_SOURCE_DIR}/src/python/call_calc.cpython-38-x86_64-linux-gnu.so DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)  # only for linux

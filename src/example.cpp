@@ -32,4 +32,5 @@ void add_wrapper(py::array_t<int> a, py::array_t<int> b) {
 
 PYBIND11_MODULE(example, m) {
     m.def("add", &add_wrapper, "Add two arrays using CUDA");
+    m.def("add_cpp", &add_cpp, "Add two numbers using cpp");
 }

@@ -12,13 +12,14 @@ endif()
 project(pybind11_cuda LANGUAGES CXX CUDA)
 
 # c++ flags
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -g ")
 
 # cuda flags
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Xcompiler -fPIC")
+set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Xcompiler -fPIC -g")
 
 # 寻找CUDA工具包
-find_package(CUDAToolkit REQUIRED)
+# find_package(CUDAToolkit REQUIRED)   # 不同cmake版本
+find_package(CUDA REQUIRED)
 
 # 支持cuda架构sm_75;sm_80
 set(CMAKE_CUDA_ARCHITECTURES 75;80)
@@ -29,7 +30,6 @@ set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/out CACHE INTERNAL "install
 # 编译构建子目录
 add_subdirectory(3rd)
 add_subdirectory(src)
-
 
 
 

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <cuda_runtime.h>
 #include "example.h"
+#include <iostream>
 
 __global__ void addKernel(int *c, const int *a, const int *b, int size) {
     int i = threadIdx.x;
@@ -26,5 +27,6 @@ void add(int *c, const int *a, const int *b, int size) {
     cudaFree(dev_b);
     cudaFree(dev_c);
 
+    std::cout << "\n \nprompt = hello python call cuda success"<< std::endl;
     printf("cuda End: c %d a %d b %d size %d\n", *c, *a, *b, size);
 }
