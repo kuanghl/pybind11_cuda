@@ -29,3 +29,42 @@
         }
     ]
 }
+
+
+// // windows
+// {
+//     // 使用 IntelliSense 了解相关属性。 
+//     // 悬停以查看现有属性的描述。
+//     // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//             "name": "Python C++ Debugger",
+//             "type": "pythoncpp",
+//             "request": "launch",
+//             "pythonLaunchName": "Python: Current File",
+//             "cppAttachName": "(Windows) Attach"
+//         },
+//         {
+//             "name": "(Windows) Attach",
+//             "type": "cppvsdbg",
+//             "request": "attach",
+//             "processId": "${command:pickProcess}",
+//         },
+//         {
+//             "name": "Python: Current File",
+//             "type": "debugpy",
+//             "request": "launch",
+//             "program": "C:\\Users\\Azure\\Desktop\\rpp\\win_osal\\graph_loader\\demo\\samples\\qwen\\qwen7b_run_graph_r8_1024_r8_2048_osal.py",
+//             "args": [
+//                 "-m",
+//                 "C:\\Users\\Azure\\Desktop\\rpp\\win_osal\\llm\\qwen\\qwen7_B",
+//                 "-g",
+//                 "C:\\Users\\Azure\\Desktop\\rpp\\win_osal\\llm\\qwen\\graph_bins_0605"
+//             ],
+//             "cwd": "C:\\Users\\Azure\\Desktop\\rpp\\win_osal\\llm\\qwen",
+//             "console": "integratedTerminal",
+//             "stopOnEntry": true,
+//         }
+//     ]
+// }

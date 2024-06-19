@@ -57,4 +57,4 @@ install(TARGETS call_cuda LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 install(TARGETS call_cpp LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 install(TARGETS example LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 install(TARGETS call_python DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
-install(FILES ${PROJECT_SOURCE_DIR}/src/python/call_calc.cpython-38-x86_64-linux-gnu.so DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)  # only for linux
+# install(FILES ${PROJECT_SOURCE_DIR}/src/python/call_calc.cpython-38-x86_64-linux-gnu.so DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)  # only for linux
